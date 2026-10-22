@@ -1,0 +1,11 @@
+.idea/
+__pycache__/
+*.pyc
+data/
+fucksina.py
+fucksina分段用.py
+ia_test.py
+iqiyi_mul_batch.py
+main_asyn.py
+search/
+*.db
