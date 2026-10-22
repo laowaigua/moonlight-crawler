@@ -15,10 +15,6 @@ SQL = {
         "select": "video_id",
         "where": '"title" IS NULL'
     },
-    "youku_new":{
-        "select": "video_id",
-        "where": '"title" IS NOT NULL'
-    },
     "sina":{
         "select": "vid",
         "where": '"title" IS NULL'
@@ -42,8 +38,12 @@ SQL = {
     "sohu":{
         "select": "vid",
         "where": '"title" IS NULL'
-    }
+    },
     "iqiyi_pps":{
+        "select": "baseId",
+        "where": '"title" IS NULL'
+    },
+    "iqiyi_paopao":{
         "select": "baseId",
         "where": '"title" IS NULL'
     }
