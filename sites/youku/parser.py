@@ -28,40 +28,41 @@ class Parser(BaseParser):
             data = await r.json()
             #text = await r.text()
 
-        if data == []:
+        if data == [] or ("error" in data and data.get("error").get("code") in (1012, 120020001)):
             status = 'NULL'
-            return status, None, row, None
-        if not isinstance(data, dict):
-            raise ParserError(f"Youku API returned an invalid response: {type(data).__name__}")
-
-        error = data.get("error")
-        error_code = error.get("code") if isinstance(error, dict) else None
-        error_description = error.get("description") if isinstance(error, dict) else None
-
-        if error_code in (1012, 120020001):
-            return 'NULL', error_description, row, None
+            info = data.get("error").get("description") if "error" in data else None
+            '''
+            save_raw = False
+            if save_raw:
+                RAW_DIR = Path("./raw")
+                RAW_DIR.mkdir(exist_ok=True)
+                raw_file = RAW_DIR / f"{vid}.json"
+                raw_file.write_text(text, encoding="utf-8")
+            '''
+            return status, info, row, None
         elif "title" in data:
             status = 'OK'
             row["title"] = data.get("title")
             row["duration"] = data.get("duration")
+            row["state"] = data.get("duration")
+            row["created"] = data.get("duration")
             row["published"] = data.get("published")
             row["description"] = data.get("description")
-            user = data.get("user")
-            row["user_id"] = user.get("id") if isinstance(user, dict) else None
+            row["public_type"] = data.get("description")
+            row["user_id"] = data.get("user", {}).get("id")
             row["tags"] = data.get("tags")
             return status, row["title"], row, None
-        elif error_code == 1015:
-            raise YoukuAPIError(error_code, error.get("type"), error_description)
+        elif "error" in data and data.get("error").get("code") == 1015:
+            raise YoukuAPIError(data.get("error").get("code"), data.get("error").get("type"), data.get("error").get("description"))
 
-        return "ERROR", error_description or f"Unexpected Youku API response: {data!r}", row, None
+        return "ERROR", data.get("error", {}).get("description"), row, None
 
 
     async def _handle_exception(self, item, row, exception):
-        if isinstance(exception, YoukuAPIError) and exception.code == 120020001:
+        if exception.code == 120020001:
             return "NULL", exception.description, row, None
-        if isinstance(exception, YoukuAPIError):
+        else:
             return "ERROR", exception.description, row, None
-        return await super()._handle_exception(item, row, exception)
 
 class YoukuAPIError(ParserError):
 
