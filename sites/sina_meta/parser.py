@@ -28,7 +28,7 @@ class Parser(BaseParser):
         for ext in ['flv', 'hlv', 'mp4']:
 
             #url = f"http://s3.ivideo.sina.com.cn/{file_id}.{ext}?meta&formatter=json"
-            url = f"http://s3.ivideo.sina.com.cn.sinastorage.com/{file_id}.{ext}?meta&formatter=json"
+            url = f"https://cdn.sinastorage.com/s3.v.iask.com/{file_id}.{ext}?meta&formatter=json" # change storage url
 
             async with session.get(
                     url=url,
