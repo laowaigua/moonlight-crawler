@@ -2,13 +2,13 @@
 
 > ——在月光下镌刻我们的回忆。
 
-**Moonlight-Crawler** 是一个以回忆珍藏为核心的网络爬虫项目，致力于从各大视频网站中采集、整理与保存有价值的信息，让每一段值得留存的记忆，都能在月光下被温柔珍藏。
+**Moonlight-Crawler** 是一个以回忆珍藏为核心的项目，致力于从各大视频网站中采集、整理与保存有价值的信息，让每一段值得留存的记忆，都能在月光下被温柔珍藏。
 
 ## ✨ 项目简介
 
 月光洒落，时光流转。
 
-我们希望通过爬虫技术，把在时光长河中散落的互联网信息汇集起来，化作可以保存、检索与回顾的数字记忆。
+我们希望通过技术，把在时光长河中散落的互联网信息汇集起来，化作可以保存、检索与回顾的数字记忆。
 
 Moonlight-Crawler 不仅是一个爬虫项目，更是一种关于记录与对抗遗忘的探索。
 
@@ -41,8 +41,8 @@ Moonlight-Crawler 不仅是一个爬虫项目，更是一种关于记录与对�
 | 优酷土豆     | 优酷土豆视频信息接口     | [`sites/youku/parser.py`](sites/youku/parser.py)           |
 | 新浪视频     | 新浪视频信息接口       | [`sites/sina/parser.py`](sites/sina/parser.py)             |
 | 新浪WAP   | 新浪视频WAP信息接口    | [`sites/sina_wap/parser.py`](sites/sina_wap/parser.py)     |
-| 新浪存储桶元数据 | 新浪视频存储桶文件元数据接口 | [`sites/sina_meta/parser.py`](sites/sina_meta/parser.py)   |
-| 新浪酷搜     | 新浪视频酷搜缩略图文件    | [`sites/sina_kusou/parser.py`](sites/sina_kusou/parser.py) |
+| 新浪爱问存储桶元数据 | 新浪视频爱问存储桶文件元数据接口 | [`sites/sina_meta/parser.py`](sites/sina_meta/parser.py)   |
+| 新浪酷搜     | 新浪视频酷搜缩略图文件获取    | [`sites/sina_kusou/parser.py`](sites/sina_kusou/parser.py) |
 | 搜狐视频     | 搜狐视频信息接口       | [`sites/sohu/parser.py`](sites/sohu/parser.py)             |
 | 爱奇艺PPS   | 爱奇艺PPS视频信息接口   | [`sites/iqiyi_pps/parser.py`](sites/iqiyi_pps/parser.py)           |
 | 爱奇艺泡泡    | 爱奇艺泡泡视频信息接口    | [`sites/iqiyi_paopao/parser.py`](sites/iqiyi_paopao/parser.py)           |
