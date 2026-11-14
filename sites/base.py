@@ -110,7 +110,7 @@ class BaseParser:
 
         return status, info, row, blob
 
-    async def _fetch_data(self, item, session, headers, row):
+    async def _fetch_data(self, item, session, headers, row, extra_params=None):
         """
         子类必须实现，返回 status, info, row, blob
         """

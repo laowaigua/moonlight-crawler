@@ -12,7 +12,7 @@ class Crawler:
     }
 
     def __init__(self, parser, storager, chunk_size=100_000, concurrency=8, delay=0,
-                 session_max_items=0):
+                 session_max_items=0, extra_params_func=None):
         self.parser = parser
         self.storager = storager
         self.chunk_size = chunk_size

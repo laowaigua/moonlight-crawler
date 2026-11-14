@@ -17,19 +17,15 @@ SQL = {
     },
     "sina":{
         "select": "vid",
-        "where": '"title" IS NULL'
-    },
-    "sina_api":{
-        "select": "vid",
-        "where": '"title" IS NULL'
+        "where": '"video_id" IS NOT NULL'
     },
     "sina_wap":{
         "select": "vid",
         "where": '"title" IS NULL'
     },
-    "sina_meta":{
-        "select": "file_id",
-        "where": '"type" IS NULL'
+    "sina_api":{
+        "select": "vid",
+        "where": '"video_id" IS NOT NULL'
     },
     "sina_kusou":{
         "select": "vid",
@@ -56,7 +52,7 @@ def iter_db_files(directory):
         yield path
 
 def find_bad_vids(site, db_file, table, condition=None):
-    """从单个数据库中找出疑似错误的 video_id"""
+    """从单个数据库中找出疑似错误的 item"""
     conn = sqlite3.connect(db_file)
     cur = conn.cursor()
     select = SQL[site]["select"]

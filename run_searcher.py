@@ -16,7 +16,8 @@ _DEFAULT_FIELDS = {
     "sina":["title","description"],
     "sina_wap":["title"],
     "sohu":["title","keywords","description"],
-    "youtube":["title"]
+    "youtube":["title"],
+    "iqiyi_pps":["title","description"]
 }
 
 def safe_filename(s):

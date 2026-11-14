@@ -6,5 +6,7 @@ SCHEMA = {
     "title": "TEXT",
     "length": "INTEGER",
     "description": "TEXT",
-    "create_time": "TEXT",
+    "create_time": "TEXT", # UTC+8
+    "videos": "TEXT", # {["file_id": ,"size": ,"type": ], [], ...}
+    "message": "TEXT", # OK | 视频已删除(deleted) | 该视频不存在(not found)
 }

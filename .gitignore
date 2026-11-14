@@ -3,9 +3,10 @@ __pycache__/
 *.pyc
 data/
 fucksina.py
-fucksina分段用.py
+find_segs.py
 ia_test.py
 iqiyi_mul_batch.py
 main_asyn.py
 search/
 *.db
+*.db-journal
