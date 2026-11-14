@@ -10,3 +10,4 @@ main_asyn.py
 search/
 *.db
 *.db-journal
+*.txt
