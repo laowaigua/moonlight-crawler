@@ -39,9 +39,9 @@ Moonlight-Crawler 不仅是一个爬虫项目，更是一种关于记录与对�
 | 站点       | 说明             | Parser 代码                                                  |
 | -------- | -------------- | ---------------------------------------------------------- |
 | 优酷土豆     | 优酷土豆视频信息接口     | [`sites/youku/parser.py`](sites/youku/parser.py)           |
-| 新浪视频     | 新浪视频信息接口       | [`sites/sina/parser.py`](sites/sina/parser.py)             |
+| 新浪视频     | 新浪视频PLAY信息接口       | [`sites/sina/parser.py`](sites/sina/parser.py)             |
+| 新浪API     | 新浪视频API信息接口       | [`sites/sina_api/parser.py`](sites/sina_api/parser.py)             |
 | 新浪WAP   | 新浪视频WAP信息接口    | [`sites/sina_wap/parser.py`](sites/sina_wap/parser.py)     |
-| 新浪爱问存储桶元数据 | 新浪视频爱问存储桶文件元数据接口 | [`sites/sina_meta_iask/parser.py`](sites/sina_meta_iask/parser.py)   |
 | 新浪酷搜     | 新浪视频酷搜缩略图文件获取    | [`sites/sina_kusou/parser.py`](sites/sina_kusou/parser.py) |
 | 搜狐视频     | 搜狐视频信息接口       | [`sites/sohu/parser.py`](sites/sohu/parser.py)             |
 | 爱奇艺PPS   | 爱奇艺PPS视频信息接口   | [`sites/iqiyi_pps/parser.py`](sites/iqiyi_pps/parser.py)           |

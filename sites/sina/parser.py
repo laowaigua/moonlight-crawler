@@ -90,16 +90,11 @@ class Parser(BaseParser):
 
             return status, row["title"], row, None
 
-        elif "failed to pass the review" in message or "deleted" in message or "not found" in message:
+        elif "review" in message or "deleted" in message or "transcode" in message or "not found" in message:
 
             status = 'OK'
 
-            if "failed to pass the review" in message:
-                row["message"] = "failed to pass the review"
-            elif "deleted" in message:
-                row["message"] = "deleted"
-            elif "not found" in message:
-                row["message"] = "not found"
+            row["message"] = message.split("(")[1].split(")")[0]
 
             return status, row["message"], row, None
 
