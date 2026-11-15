@@ -85,10 +85,10 @@ class Parser(BaseParser):
                 for v in videos_list:
                     videos.append(
                         {
-                            "definition": v.get("definition"),
+                            #"definition": v.get("definition"),
                             "file_id": v.get("file_id"),
-                            "size": v.get("size"),
                             "type": v.get("type"),
+                            "size": v.get("size"),
                             "md5": v.get("md5")
                         }
                     )
