@@ -90,10 +90,54 @@ class Parser(BaseParser):
 
             return status, row["title"], row, None
 
-        elif "review" in message or "deleted" in message or "transcode" in message or "not found" in message:
+        elif "review" in message or "transcode" in message:
 
             status = 'OK'
+            async with session.get(
+                    "http://api.ivideo.sina.com.cn/public/video/play",
+                    headers=headers,
+                    params={
+                        "appname": "sinaplayer_pc",
+                        "tags": "sinaplayer_pc",
+                        "applt": "web",
+                        "appver": "V11220.210521.03",
+                        "player": "all",
+                        "video_id": video_id
+                    },
+                    timeout=60
+            ) as r:
+                r.raise_for_status()
+                data = await r.json()
 
+            if not isinstance(data, dict):
+                return "ERROR", "Sina video lookup returned a non-object response", row, None
+
+            message = data.get("Message")
+            if "review" in message or "transcode" in message:
+
+                video_data = data.get("data")
+                if not isinstance(video_data, dict):
+                    return "ERROR", "Sina video response is missing a valid data object", row, None
+
+                status = 'OK'
+
+                row["title"] = video_data.get("title")
+                row["length"] = video_data.get("length")
+                row["description"] = video_data.get("description")
+                create_time = video_data.get("create_time")
+                try:
+                    row["create_time"] = self._ts_to_beijing(int(create_time)) if create_time else None
+                except (TypeError, ValueError, OverflowError, OSError):
+                    row["create_time"] = None
+
+                row["videos"] = None
+                row["message"] = message.split("(")[1].split(")")[0]
+
+                return status, row["title"], row, None
+
+        elif "deleted" in message or "not found" or "offline" in message:
+
+            status = 'OK'
             row["message"] = message.split("(")[1].split(")")[0]
 
             return status, row["message"], row, None
@@ -101,6 +145,6 @@ class Parser(BaseParser):
         return "ERROR", data.get("message"), row, None
 
     @staticmethod
-    def _ts_to_beijing(self, ts: int, fmt: str = "%Y-%m-%d %H:%M:%S") -> str:
+    def _ts_to_beijing(ts: int, fmt: str = "%Y-%m-%d %H:%M:%S") -> str:
         BJ_TZ = ZoneInfo("Asia/Shanghai")
         return datetime.fromtimestamp(ts, BJ_TZ).strftime(fmt)

@@ -62,7 +62,7 @@ class Parser(BaseParser):
             return "ERROR", "Sina video lookup returned a non-object response", row, None
 
         message = data.get("Message")
-        if message == "OK" or "failed to pass the review" in message:
+        if message == "OK" or "review" in message or "transcode" in message:
 
             video_data = data.get("data")
             if not isinstance(video_data, dict):
@@ -78,26 +78,32 @@ class Parser(BaseParser):
                 row["create_time"] = self._ts_to_beijing(int(create_time)) if create_time else None
             except (TypeError, ValueError, OverflowError, OSError):
                 row["create_time"] = None
+
             videos_list = video_data.get("videos")
-            videos = []
-            for v in videos_list:
-                videos.append(
-                    {
-                        "file_id": v.get("file_id"),
-                        "size": v.get("size"),
-                        "type": v.get("type"),
-                        "md5": v.get("md5")
-                    }
-                )
-            row["videos"] = json.dumps(videos, separators=(',', ':'), ensure_ascii=False)
-            row["message"] = message
+            if videos_list:
+                videos = []
+                for v in videos_list:
+                    videos.append(
+                        {
+                            "file_id": v.get("file_id"),
+                            "size": v.get("size"),
+                            "type": v.get("type"),
+                            "md5": v.get("md5")
+                        }
+                    )
+                row["videos"] = json.dumps(videos, separators=(',', ':'), ensure_ascii=False)
+            else:
+                row["videos"] = None
+
+            row["message"] = "OK" if message == "OK" else message.split("(")[1].split(")")[0]
 
             return status, row["title"], row, None
 
-        elif "deleted" in message or "not found" in message:
+        elif "deleted" in message or "not found" in message or "offline" in message:
 
             status = 'OK'
-            row["message"] = "deleted" if "deleted" in message else "not found"
+
+            row["message"] = message.split("(")[1].split(")")[0]
 
             return status, message, row, None
 
