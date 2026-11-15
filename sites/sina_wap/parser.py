@@ -61,8 +61,7 @@ class Parser(BaseParser):
                 status = 'OK'
                 row["title"] = video_data.get("title")
                 row["length"] = video_data.get("timeLength")
-                row["description"] = None # wap接口返回值全为""
-                row["create_time"] = None
+                row["create_time"] = video_data.get("mp4vid")
 
                 return status, row["title"], row, None
             elif data.get("code") == 1:

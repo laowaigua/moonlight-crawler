@@ -88,7 +88,7 @@ class Parser(BaseParser):
                             "file_id": v.get("file_id"),
                             "size": v.get("size"),
                             "type": v.get("type"),
-                            "md5": v.get("md5")
+                            #"md5": v.get("md5")
                         }
                     )
                 row["videos"] = json.dumps(videos, separators=(',', ':'), ensure_ascii=False)
