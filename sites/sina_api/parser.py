@@ -100,11 +100,15 @@ class Parser(BaseParser):
 
             return status, row["title"], row, None
 
-        elif "deleted" in message or "not found" in message or "offline" in message:
+        elif "deleted" in message \
+            or "not found"  in message \
+            or "offline" in message \
+            or "transcoding" in message:
 
             status = 'OK'
-
-            row["message"] = message.split("(")[1].split(")")[0]
+            row["message"] = message.split("(")[1].split(")")[0] \
+                if "transcoding" not in message \
+                else "transcoding"
 
             return status, message, row, None
 
