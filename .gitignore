@@ -2,8 +2,8 @@
 __pycache__/
 *.pyc
 data/
-fucksina.py
-find_segs.py
+sina_batch_download.py
+sina_find_segs.py
 ia_test.py
 iqiyi_mul_batch.py
 main_asyn.py
