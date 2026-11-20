@@ -15,7 +15,7 @@ class Parser(BaseParser):
 
         # 通过vid获取video_id
         async with session.get(
-            "https://s.video.sina.com.cn/video/getvideoidbyvid",
+            "https://s.video.sina.com.cn/Video/getvideoidbyvid",
             headers=headers,
             params={"vid": str(vid)},
             timeout=60
@@ -61,7 +61,7 @@ class Parser(BaseParser):
                 status = 'OK'
                 row["title"] = video_data.get("title")
                 row["length"] = video_data.get("timeLength")
-                row["create_time"] = video_data.get("mp4vid")
+                row["mp4vid"] = video_data.get("mp4vid")
 
                 return status, row["title"], row, None
             elif data.get("code") == 1:

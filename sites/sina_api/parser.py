@@ -8,7 +8,7 @@ from zoneinfo import ZoneInfo
 
 class Parser(BaseParser):
 
-    name = "sina"
+    name = "sina_api"
     schema = SCHEMA
 
     @retry(times=5)
