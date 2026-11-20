@@ -14,7 +14,7 @@ class Parser(BaseParser):
 
         row["vid"] = vid
 
-        # http://image2.sina.com.cn/kusou/v/{vid后一位}/{vid后两位}/{vid后两位}/{vid}_(1|2|3|...).jpg
+        # http://image2.sina.com.cn/kusou/v/{vid后一位}/{vid后两位}/{vid后两位}/{vid}_(0|1|2|...).jpg
 
         i = 0
         image = []

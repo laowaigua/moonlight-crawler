@@ -27,6 +27,10 @@ SQL = {
         "select": "vid",
         "where": '"video_id" IS NOT NULL'
     },
+    "sina_ipad_vid":{
+        "select": "vid",
+        "where": '"video_id" IS NOT NULL'
+    },
     "sina_kusou":{
         "select": "vid",
         "where": '"md5" IS NULL'
